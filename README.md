@@ -1,4 +1,4 @@
-# Logic Tensor Networks — presentation and hands-on case study
+# Logic Tensor Networks: presentation and hands-on case study
 
 This repository presents **Logic Tensor Networks (LTN)**, a neuro-symbolic
 framework that combines deep learning with first-order logical reasoning:
@@ -14,14 +14,14 @@ The repository has two parts:
    (*grounding*), how logical connectives and quantifiers are turned into
    differentiable operations (stable product configuration, diagonal and
    guarded quantification), and how the satisfaction of a knowledge base
-   becomes a loss function for training a neural network — see the
+   becomes a loss function for training a neural network. See the
    [tutorials](code/tutorials).
 2. **A hands-on case study** (`code/`), built on the
    [LTNtorch](https://github.com/logictensornetworks/LTNtorch) library:
    semi-supervised recognition of handwritten digits, where an LTN learns
    to recognize individual digits without ever receiving their label, only
    the sum of two digits. The results are compared with a purely supervised
-   baseline — see the [examples](code/examples), in particular
+   baseline. See the [examples](code/examples), in particular
    [the case study](code/examples/4-semi-supervised_pattern_recognition.ipynb).
 
 ## Repository structure
@@ -58,22 +58,22 @@ logic-tensor-networks/
 My notes on the LTNtorch tutorials: my own explanation of each step, to be
 read in order. Each one introduces a further layer of the framework:
 
-1. **Grounding non-logical symbols** — Real Logic: how a constant, a
+1. **Grounding non-logical symbols.** Real Logic: how a constant, a
    predicate, a function or a variable becomes a tensor or a
    differentiable function.
-2. **Grounding connectives** — turning logical connectives (∧, ∨, ¬, ⇒)
+2. **Grounding connectives.** Turning logical connectives (∧, ∨, ¬, ⇒)
    into differentiable fuzzy operations (product configuration).
-3. **Operators and gradients** — the three gradient pitfalls (vanishing,
+3. **Operators and gradients.** The three gradient pitfalls (vanishing,
    single-passing, exploding) and the *stable* product configuration that
    avoids them.
-4. **Knowledge base and learning** — quantifiers (∀, ∃), generalized mean
+4. **Knowledge base and learning.** Quantifiers (∀, ∃), generalized mean
    (`pMean`), and the satisfaction of a knowledge base (`SatAgg`) as the
    training objective.
 
 ### Examples (`code/examples/`)
 
 This folder keeps all the official LTNtorch examples for reference.
-Example **4 — semi-supervised pattern recognition** is the one developed in
+Example **4, semi-supervised pattern recognition**, is the one developed in
 the presentation: an LTN learns an MNIST digit classifier without ever
 receiving the label of an individual digit, only the sum of two digits, and
 its ability to generalize is compared with a purely supervised baseline on
@@ -125,7 +125,7 @@ latexmk -pdf main.tex
   *Logic Tensor Networks*. Artificial Intelligence, 303, 103649.
 - Manhaeve, R., Dumančić, S., Kimmig, A., Demeester, T., & De Raedt, L.
   (2018). *DeepProbLog: Neural Probabilistic Logic Programming*. NeurIPS.
-- Carraro, T. LTNtorch —
+- Carraro, T. LTNtorch:
   [github.com/logictensornetworks/LTNtorch](https://github.com/logictensornetworks/LTNtorch)
 - LeCun, Y., Cortes, C., & Burges, C. *The MNIST Database of Handwritten
   Digits*.
