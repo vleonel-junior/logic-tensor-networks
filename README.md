@@ -31,6 +31,7 @@ logic-tensor-networks/
 ├── code/
 │   ├── venv/                          Python virtual environment (not versioned)
 │   ├── requirements.txt               Python dependencies
+│   ├── diagrams/                      script drawing the connective and quantifier diagrams
 │   ├── tutorials/                     my notes on the LTNtorch tutorials
 │   │   ├── 1-grounding_non_logical_symbols.ipynb
 │   │   ├── 2-grounding_connectives.ipynb
@@ -78,6 +79,22 @@ the presentation: an LTN learns an MNIST digit classifier without ever
 receiving the label of an individual digit, only the sum of two digits, and
 its ability to generalize is compared with a purely supervised baseline on
 single-digit and two-digit addition.
+
+### Diagrams (`code/diagrams/`)
+
+`connectives_and_quantifiers.py` draws four diagrams of how connectives and
+quantifiers act on tensor shapes, in the graphical convention of the LTN
+paper, for the examples of tutorial 2: a conjunction on a shared variable,
+a disjunction with broadcasting, a negation on constants, and a universal
+quantifier over a single axis. From `code/`:
+
+```bash
+python diagrams/connectives_and_quantifiers.py
+```
+
+The images, in French and English (`-en` suffix), are written to
+`diagrams/images/`, which is not versioned. `--out` sets another folder and
+`--lang` draws a single language.
 
 ## Getting started
 
