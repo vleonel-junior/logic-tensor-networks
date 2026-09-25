@@ -1,47 +1,46 @@
-# Logic Tensor Networks — présentation et étude de cas pratique
+# Logic Tensor Networks — presentation and hands-on case study
 
-Ce dépôt présente les **Logic Tensor Networks (LTN)**, un framework
-neuro-symbolique qui combine apprentissage profond et raisonnement logique
-du premier ordre : il fixe la *forme* d'un prédicat au moyen d'une formule
-logique, tout en laissant le *contenu* qu'il calcule être appris par
-descente de gradient.
+This repository presents **Logic Tensor Networks (LTN)**, a neuro-symbolic
+framework that combines deep learning with first-order logical reasoning:
+it fixes the *form* of a predicate through a logical formula, while the
+*content* it computes is learned by gradient descent.
 
-Le dépôt se compose de deux volets :
+The presentation and the notebooks are written in French.
 
-1. **Une présentation théorique** (`presentation/`) : comment un symbole
-   logique (constante, prédicat, fonction, variable) est représenté sous
-   forme de tenseur (*grounding*), comment les connecteurs et
-   quantificateurs logiques sont traduits en opérations différentiables
-   (configuration produit stable, quantification diagonale et gardée), et
-   comment la satisfaction d'une base de connaissances devient une
-   fonction de perte pour l'entraînement d'un réseau de neurones — voir
-   les [tutoriels](code/tutorials).
-2. **Une étude de cas pratique** (`code/`), basée sur la bibliothèque
-   [LTNtorch](https://github.com/logictensornetworks/LTNtorch) : la
-   reconnaissance semi-supervisée de chiffres manuscrits, où un LTN
-   apprend à reconnaître des chiffres individuels sans jamais recevoir
-   leur étiquette, uniquement à partir de la somme de deux chiffres. Les
-   résultats sont comparés à une baseline purement supervisée — voir les
-   [exemples](code/examples) et en particulier
-   [l'étude de cas](code/examples/4-semi-supervised_pattern_recognition.ipynb).
+The repository has two parts:
 
-## Structure du dépôt
+1. **A theoretical presentation** (`presentation/`): how a logical symbol
+   (constant, predicate, function, variable) is represented as a tensor
+   (*grounding*), how logical connectives and quantifiers are turned into
+   differentiable operations (stable product configuration, diagonal and
+   guarded quantification), and how the satisfaction of a knowledge base
+   becomes a loss function for training a neural network — see the
+   [tutorials](code/tutorials).
+2. **A hands-on case study** (`code/`), built on the
+   [LTNtorch](https://github.com/logictensornetworks/LTNtorch) library:
+   semi-supervised recognition of handwritten digits, where an LTN learns
+   to recognize individual digits without ever receiving their label, only
+   the sum of two digits. The results are compared with a purely supervised
+   baseline — see the [examples](code/examples), in particular
+   [the case study](code/examples/4-semi-supervised_pattern_recognition.ipynb).
+
+## Repository structure
 
 ```
 logic-tensor-networks/
 ├── code/
-│   ├── venv/                          environnement virtuel Python (non versionné)
-│   ├── requirements.txt               dépendances Python
-│   ├── tutorials/                     tutoriels officiels LTNtorch, réécrits en français
+│   ├── venv/                          Python virtual environment (not versioned)
+│   ├── requirements.txt               Python dependencies
+│   ├── tutorials/                     my notes on the LTNtorch tutorials
 │   │   ├── 1-grounding_non_logical_symbols.ipynb
 │   │   ├── 2-grounding_connectives.ipynb
 │   │   ├── 2b-operators-and-gradients.ipynb
 │   │   └── 3-knowledgebase-and-learning.ipynb
-│   └── examples/                      exemples officiels LTNtorch
+│   └── examples/                      official LTNtorch examples
 │       ├── 1-binary_classification.ipynb
 │       ├── 2-multi_class_single_label_classification.ipynb
 │       ├── 3-multi_class_multi_label_classification.ipynb
-│       ├── 4-semi-supervised_pattern_recognition.ipynb   <- étude de cas de la présentation
+│       ├── 4-semi-supervised_pattern_recognition.ipynb   <- case study of the presentation
 │       ├── 5-regression.ipynb
 │       ├── 6-clustering.ipynb
 │       ├── 7-learning_embeddings_with_LTN.ipynb
@@ -49,44 +48,40 @@ logic-tensor-networks/
 │       └── images/
 │
 └── presentation/
-    ├── main.tex          source de la présentation (Beamer)
-    ├── main.pdf           présentation compilée
-    ├── images/            figures utilisées dans les diapositives
-    └── README.md          compilation et conventions d'écriture
+    ├── main.tex           presentation source (Beamer)
+    ├── main.pdf           compiled presentation
+    └── images/            figures used in the slides
 ```
 
-### Tutoriels (`code/tutorials/`)
+### Tutorials (`code/tutorials/`)
 
-Les tutoriels officiels de LTNtorch, réécrits pédagogiquement en français,
-à suivre dans l'ordre. Chacun introduit un niveau supplémentaire du
-framework :
+My notes on the LTNtorch tutorials: my own explanation of each step, to be
+read in order. Each one introduces a further layer of the framework:
 
-1. **Grounding des symboles non logiques** — Real Logic : comment une
-   constante, un prédicat, une fonction ou une variable devient un
-   tenseur ou une fonction différentiable.
-2. **Grounding des connecteurs** — traduction des connecteurs logiques
-   (∧, ∨, ¬, ⇒) en opérations floues différentiables (configuration
-   produit).
-3. **Opérateurs et gradients** — les trois pièges du gradient (gradient
-   qui s'annule, à passage unique, qui explose) et la configuration
-   produit *stable* qui les évite.
-4. **Base de connaissances et apprentissage** — quantificateurs (∀, ∃),
-   moyenne généralisée (`pMean`), et satisfaction d'une base de
-   connaissances (`SatAgg`) comme objectif d'entraînement.
+1. **Grounding non-logical symbols** — Real Logic: how a constant, a
+   predicate, a function or a variable becomes a tensor or a
+   differentiable function.
+2. **Grounding connectives** — turning logical connectives (∧, ∨, ¬, ⇒)
+   into differentiable fuzzy operations (product configuration).
+3. **Operators and gradients** — the three gradient pitfalls (vanishing,
+   single-passing, exploding) and the *stable* product configuration that
+   avoids them.
+4. **Knowledge base and learning** — quantifiers (∀, ∃), generalized mean
+   (`pMean`), and the satisfaction of a knowledge base (`SatAgg`) as the
+   training objective.
 
-### Exemples (`code/examples/`)
+### Examples (`code/examples/`)
 
-Le dossier conserve l'ensemble des exemples officiels de LTNtorch pour
-référence. L'exemple **4 — reconnaissance de motifs semi-supervisée** est
-celui développé dans la présentation : un LTN apprend un classifieur de
-chiffres MNIST sans jamais recevoir l'étiquette d'un chiffre individuel,
-uniquement la somme de deux chiffres, et sa capacité à généraliser est
-comparée à une baseline purement supervisée sur l'addition à un et deux
-chiffres.
+This folder keeps all the official LTNtorch examples for reference.
+Example **4 — semi-supervised pattern recognition** is the one developed in
+the presentation: an LTN learns an MNIST digit classifier without ever
+receiving the label of an individual digit, only the sum of two digits, and
+its ability to generalize is compared with a purely supervised baseline on
+single-digit and two-digit addition.
 
-## Prise en main
+## Getting started
 
-### Environnement du code
+### Code environment
 
 **Windows (PowerShell)**
 ```powershell
@@ -104,27 +99,27 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Lancer ensuite Jupyter depuis `code/` :
+Then start Jupyter from `code/`:
 ```bash
 jupyter notebook
 ```
 
-et ouvrir `examples/4-semi-supervised_pattern_recognition.ipynb` pour
-reproduire l'étude de cas présentée.
+and open `examples/4-semi-supervised_pattern_recognition.ipynb` to
+reproduce the case study.
 
-### Compilation de la présentation
+### Building the presentation
 
-Nécessite une distribution LaTeX avec `latexmk` et `pdflatex`, ainsi que
-Python et [Pygments](https://pygments.org/) (requis par `minted` pour la
-coloration syntaxique, via `-shell-escape`).
+Requires a LaTeX distribution with `latexmk` and `pdflatex`, plus Python
+and [Pygments](https://pygments.org/) (needed by `minted` for syntax
+highlighting, through `-shell-escape`).
 
-Depuis `presentation/` :
+From `presentation/`:
 
 ```bash
 latexmk -pdf main.tex
 ```
 
-## Références
+## References
 
 - Badreddine, S., d'Avila Garcez, A., Serafini, L., & Spranger, M. (2022).
   *Logic Tensor Networks*. Artificial Intelligence, 303, 103649.
