@@ -857,7 +857,7 @@ détaillés dans un notebook complémentaire.}
   \vspace{0.3em}
   \begin{itemize}
     \small
-    \item quand $p \to 1$ : les deux tendent vers une moyenne simple,
+    \item pour $p = 1$ : les deux sont une moyenne simple,
       tolérante aux cas difficiles du batch ;
     \item quand $p \to \infty$ : $\mathrm{pMean}$ tend vers le
       \alert{maximum}, $\mathrm{pMeanError}$ vers le \alert{minimum}\\
@@ -1344,7 +1344,7 @@ formule déjà construite.
     \node[align=center, text width=7.6cm] at (0,1.925) {
       \footnotesize\textcolor{ash}{\scshape réseaux entraînables}\\[3pt]
       \footnotesize $C$ : un MLP de sortie softmax\\[3pt]
-      \footnotesize $\mathrm{Sim}$ : $\exp(-\|u-v\|^2)$
+      \footnotesize $\mathrm{Sim}$ : $\exp(-\|u-v\|)$
     };
     \draw[ash, -{Stealth[length=5pt]}, thick] (0,0.95) -- (0,0.5);
     \node[ash, font=\tiny, anchor=west] at (0.15,0.72)
@@ -1650,7 +1650,7 @@ sur les exemples du batch.
 
   \vspace{0.3em}
   \textbf{Paramètre $p$ (LTN uniquement).} Le quantificateur $\exists$ est
-  rendu progressivement plus exigeant : $p=1\rightarrow2\rightarrow4
+  rendu progressivement plus sélectif : $p=1\rightarrow2\rightarrow4
   \rightarrow6$, par paliers de 4 epochs. On part d'une agrégation proche
   de la moyenne, puis on se rapproche progressivement du maximum.
 \end{frame}
@@ -1835,8 +1835,13 @@ plafonne bien plus bas, signe d'un surapprentissage. Le LTN, lui, garde
 ses courbes de train et de test proches l'une de l'autre.
 
 À droite, le niveau de satisfaction logique progresse par paliers, qui
-correspondent exactement aux changements de $p$ déjà présentés : la
-satisfaction augmente à chaque fois que $p$ devient plus exigeant.
+correspondent exactement aux changements de $p$ déjà présentés. Il faut
+bien lire ces sauts : pour des degrés de vérité fixés, $\mathrm{pMean}$
+augmente mécaniquement avec $p$, puisqu'il se rapproche du maximum. Une
+grande partie de chaque saut vient donc du changement de la mesure
+elle-même, et non d'un progrès soudain du classifieur : l'accuracy, elle,
+ne fait pas de saut aux mêmes moments. Les niveaux de satisfaction ne sont
+comparables qu'à $p$ égal.
 }
 
 % ============================================================
